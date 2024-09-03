@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:37:08 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:26:20 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/03 21:03:35 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@
 /*init*/
 void	check_args(int argc, char **argv);
 void	init_data(t_data *data, int argc, char **argv);
+void	init_philos(t_data data);
 void	show_data(t_data);
 /*errors*/
 void	exit_error(char *str, t_data *data);
+/*utils*/
+void	wait_threads(t_data data);
+/*philo*/
+void	*routine(void *args);
 
 #endif
