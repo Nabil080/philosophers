@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:17:59 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:25:16 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ typedef struct s_philo{
 }t_philo;
 
 typedef struct s_data{
-	size_t	philo_count;
-	size_t	meal_count;
+	int		philo_count;
+	int		meal_count;
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
