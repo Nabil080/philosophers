@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 19:38:11 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:17:53 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	ft_putstr(argv[0]);
+	t_data	data;
+
+	check_args(argc, argv);
+	init_data(&data);
 	return (0);
 }

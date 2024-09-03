@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_checkers.h                                      :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 14:15:15 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:19:43 by nbellila         ###   ########.fr       */
+/*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
+/*   Updated: 2024/09/03 20:17:59 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IS_CHECKERS_H
-# define IS_CHECKERS_H
+#ifndef DEFINES_H
+# define DEFINES_H
 
-int		ft_isalpha(int c);
+typedef struct s_philo{
+	int		id;
+	time_t	last_meal;
+	size_t	meal_count;
+	bool	eating;
+	bool	alive;
+}t_philo;
 
-int		ft_isspace(int c);
-
-int		ft_isdigit(int c);
-
-int		ft_isalnum(int c);	
-
-bool	ft_isnumber(char *str);	
-
-int		ft_isascii(int c);
-
-int		ft_isprint(int c);
-
-int		isabovemid(t_list *to_find, t_list *lst);
-
-int		ft_isspace(int c);
+typedef struct s_data{
+	size_t	philo_count;
+	size_t	meal_count;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	t_philo	*philos;
+}t_data;
 
 #endif

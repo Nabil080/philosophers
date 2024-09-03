@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_checkers.h                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 14:15:15 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:19:43 by nbellila         ###   ########.fr       */
+/*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
+/*   Updated: 2024/09/03 20:21:23 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IS_CHECKERS_H
-# define IS_CHECKERS_H
+#include "philo.h"
 
-int		ft_isalpha(int c);
+void	check_args(int argc, char **argv)
+{
+	size_t	i;
 
-int		ft_isspace(int c);
+	if (argc < 5 || argc > 6)
+		exit_error("Wrong number of arguments", NULL);
+	i = 1;
+	while (i < argc)
+	{
+		if (!ft_isnumber(argv[i]))
+			exit_error("Non numeric argument", NULL);
+		i++;
+	}
+}
 
-int		ft_isdigit(int c);
-
-int		ft_isalnum(int c);	
-
-bool	ft_isnumber(char *str);	
-
-int		ft_isascii(int c);
-
-int		ft_isprint(int c);
-
-int		isabovemid(t_list *to_find, t_list *lst);
-
-int		ft_isspace(int c);
-
-#endif
+void	init_data(t_data *data)
+{
+	//todo
+}
