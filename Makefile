@@ -75,7 +75,7 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
-	./${NAME}
+	./${NAME} 5 9999 100 3000
 
 leak : all
 	valgrind --suppressions=readline.supp --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./${NAME}

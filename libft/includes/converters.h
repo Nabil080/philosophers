@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:16:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/06/21 18:16:17 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:24:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ char	*ft_lsttos(t_list *lst);
 char	*ft_itoa(int n);
 
 int		ft_atoi(const char *nptr);
+
+long	ft_atol(const char *nptr);
 
 #endif

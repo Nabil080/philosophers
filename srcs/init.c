@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:21:23 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:28:36 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,23 @@ void	check_args(int argc, char **argv)
 	}
 }
 
-void	init_data(t_data *data)
+void	init_data(t_data *data, int argc, char **argv)
 {
-	//todo
+	data->philo_count = ft_atoi(argv[1]);
+	data->time_to_die = ft_atol(argv[2]);
+	data->time_to_eat = ft_atol(argv[3]);
+	data->time_to_sleep = ft_atol(argv[4]);
+	data->meal_count = -1;
+	if (argc == 6)
+		data->meal_count = ft_atoi(argv[5]);
+	data->philos = NULL;
+}
+
+void	show_data(t_data data)
+{
+	printf("Number of philosophers : %d\n", data.philo_count);
+	printf("Time to die : %ld\n", data.time_to_die);
+	printf("Time to eat : %ld\n", data.time_to_eat);
+	printf("Time to sleep : %ld\n", data.time_to_sleep);
+	printf("Number of meals : %d\n", data.meal_count);
 }
