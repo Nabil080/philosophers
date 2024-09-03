@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_checkers.h                                      :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 14:15:15 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:19:43 by nbellila         ###   ########.fr       */
+/*   Created: 2024/09/03 20:12:45 by nbellila          #+#    #+#             */
+/*   Updated: 2024/09/03 20:20:39 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IS_CHECKERS_H
-# define IS_CHECKERS_H
+#include "philo.h"
 
-int		ft_isalpha(int c);
+static void	free_data(t_data *data)
+{
+	//todo
+}
 
-int		ft_isspace(int c);
-
-int		ft_isdigit(int c);
-
-int		ft_isalnum(int c);	
-
-bool	ft_isnumber(char *str);	
-
-int		ft_isascii(int c);
-
-int		ft_isprint(int c);
-
-int		isabovemid(t_list *to_find, t_list *lst);
-
-int		ft_isspace(int c);
-
-#endif
+void	exit_error(char *str, t_data *data)
+{
+	ft_putendl_fd(str, 2);
+	if (data)
+		free_data(data);
+	exit(EXIT_FAILURE);
+}
