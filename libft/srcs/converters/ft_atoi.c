@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:14:34 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:24:34 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/03 21:10:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ long	ft_atol(const char *nptr)
 	}
 	return (result * charge);
 }
+
 int	ft_atoi(const char *nptr)
 {
 	long	result;

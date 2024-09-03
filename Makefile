@@ -19,6 +19,8 @@ MAKEFLAGS += --no-print-directory
 
 SRCS_NAMES =	main.c \
 				init.c \
+				philo.c \
+				utils.c \
 				errors.c
 
 SRCS_DIR = srcs/
@@ -62,10 +64,6 @@ debug : ${OBJS_DIR} ${OBJS}
 
 ${OBJS_DIR} :
 	@mkdir $@
-	@mkdir $@parsing
-	@mkdir $@exec
-	@mkdir $@builtin
-	@mkdir $@utils
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@

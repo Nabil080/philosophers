@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumber.c                                      :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 20:15:13 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 21:10:41 by nbellila         ###   ########.fr       */
+/*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
+/*   Updated: 2024/09/03 21:05:52 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-bool	ft_isnumber(char *str)
+void	*routine(void *args)
 {
-	size_t	i;
-
-	i = 0;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+	printf("This is a thread\n");
+	return (NULL);
 }
