@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:02:10 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:14:44 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_fork{
 typedef struct s_philo{
 	int			id;
 	pthread_t	thread;
-	t_fork		left_fork;
-	t_fork		right_fork;
+	t_fork		*left_fork;
+	t_fork		*right_fork;
 	time_t		last_meal;
 	size_t		meal_count;
 	bool		eating;
