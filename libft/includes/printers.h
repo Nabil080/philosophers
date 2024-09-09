@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:19:29 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 18:54:19 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:04:02 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 /*va_arg / write*/
 # include <stdarg.h>
 # include <unistd.h>
+
+void	sep(void);
 
 int		ft_printf(const char *str, ...);
 
