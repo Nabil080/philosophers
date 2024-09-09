@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 18:42:41 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:56:04 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ typedef enum e_operation {
 	CREATE,
 	DESTROY,
 	LOCK,
-	UNLOCK
+	UNLOCK,
+	WAIT
 }t_operation;
 
 typedef struct s_fork{
@@ -28,8 +29,10 @@ typedef struct s_fork{
 }t_fork;
 
 typedef struct s_philo{
-	pthread_t	thread;
 	int			id;
+	pthread_t	thread;
+	t_fork		left_fork;
+	t_fork		right_fork;
 	time_t		last_meal;
 	size_t		meal_count;
 	bool		eating;

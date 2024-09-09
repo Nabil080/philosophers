@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 18:47:55 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:56:49 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ static void	init_philos(t_data *data)
 		data->philos[i].eating = false;
 		data->philos[i].last_meal = 0;
 		data->philos[i].meal_count = 0;
-		//todo: link left and right forks
-		pthread_create(&data->philos[i].thread, NULL, routine, NULL);
+		if (i == 0)
+			data->philos[i].left_fork = data->forks[data->philo_count];
+		else
+			data->philos[i].left_fork = data->forks[i - 1];
+		data->philos[i].right_fork = data->forks[i];
+		thread_operation(&data->philos[i].thread, CREATE);
 		i++;
 	}
 }

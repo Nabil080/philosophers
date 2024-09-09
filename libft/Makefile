@@ -108,21 +108,21 @@ OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 all: ${NAME}
 
 ${NAME}: ${OBJS_DIR} ${OBJS}
-	@ar -rc ${NAME} ${OBJS}
+	ar -rc ${NAME} ${OBJS}
 
 ${OBJS_DIR}:
-	@mkdir ${OBJS_DIR}
-	@mkdir ${OBJS_DIR}is_checkers
-	@mkdir ${OBJS_DIR}printers
-	@mkdir ${OBJS_DIR}strings
-	@mkdir ${OBJS_DIR}memory
-	@mkdir ${OBJS_DIR}converters
-	@mkdir ${OBJS_DIR}arrays
-	@mkdir ${OBJS_DIR}linked_lists
-	@mkdir ${OBJS_DIR}read_files
+	mkdir ${OBJS_DIR}
+	mkdir ${OBJS_DIR}is_checkers
+	mkdir ${OBJS_DIR}printers
+	mkdir ${OBJS_DIR}strings
+	mkdir ${OBJS_DIR}memory
+	mkdir ${OBJS_DIR}converters
+	mkdir ${OBJS_DIR}arrays
+	mkdir ${OBJS_DIR}linked_lists
+	mkdir ${OBJS_DIR}read_files
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
-	@${CC} ${FLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
+	${CC} ${FLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
 
 clean:
 	rm -rf ${OBJS_DIR}
