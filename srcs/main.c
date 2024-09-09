@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 21:06:39 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:24:00 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	check_args(argc, argv);
-	init_data(&data, argc, argv);
-	//todo
-	show_data(data);
-	init_philos(data);
-	wait_threads(data);
+	// init_data(&data, argc, argv);
+	// show_data(data);
+	// //todo init forks
+	// //?doing
+	// init_philos(data);
+	// wait_threads(data);
 	return (0);
 }

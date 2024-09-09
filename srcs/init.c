@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 21:10:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:17:32 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	check_args(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (!ft_isnumber(argv[i]))
-			exit_error("Non numeric argument", NULL);
+		if (!ft_isint(argv[i]) || argv[i][0] == '-')
+			exit_error("Please only give positive integers", NULL);
 		i++;
 	}
 }
@@ -60,6 +60,7 @@ static t_philo	init_philo(size_t index)
 	philo.eating = false;
 	philo.last_meal = 0;
 	philo.meal_count = 0;
+	//todo: link left and right forks
 	pthread_create(&philo.thread, NULL, routine, NULL);
 	return (philo);
 }

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:15:15 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:19:43 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:22:12 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);	
 
 bool	ft_isnumber(char *str);	
+
+bool	ft_isint(char *str);
 
 int		ft_isascii(int c);
 
