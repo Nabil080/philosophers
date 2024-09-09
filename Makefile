@@ -19,7 +19,7 @@ MAKEFLAGS += --no-print-directory
 
 SRCS_NAMES =	main.c \
 				init.c \
-				philo.c \
+				dinner.c \
 				utils.c \
 				errors.c
 

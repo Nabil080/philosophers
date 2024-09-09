@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:17:00 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:22:38 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	init_philos(t_data *data)
 		else
 			data->philos[i].left_fork = &data->forks[i - 1];
 		data->philos[i].right_fork = &data->forks[i];
-		thread_operation(&data->philos[i].thread, CREATE);
+		thread_operation(&data->philos[i], CREATE);
 		i++;
 	}
 }
