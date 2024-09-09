@@ -6,14 +6,14 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 18:56:04 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:02:10 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-typedef pthread_mutex_t t_mtx;
+typedef pthread_mutex_t	t_mtx;
 
 typedef enum e_operation {
 	CREATE,

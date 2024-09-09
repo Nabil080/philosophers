@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:15:13 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 18:23:21 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:01:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ bool	ft_isint(char *str)
 
 	if (!ft_isnumber(str))
 		return (false);
-	//todo check int max;
 	i = 0;
 	if (str[i] == '-')
 		charge = -1;

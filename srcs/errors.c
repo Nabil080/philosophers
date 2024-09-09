@@ -6,13 +6,13 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:12:45 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 18:54:18 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:02:15 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	free_data(t_data *data)
+void	free_data(t_data *data)
 {
 	if (data->philos)
 		free_2d((void *)data->philos, 0);
