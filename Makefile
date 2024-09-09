@@ -76,4 +76,4 @@ base : all
 	./${NAME} 5 9999 100 3000
 
 leak : all
-	valgrind --suppressions=readline.supp --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./${NAME}
+	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} 5 9999 100 3000

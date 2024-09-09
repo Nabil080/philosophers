@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 18:56:49 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:01:59 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	init_philos(t_data *data)
 		data->philos[i].last_meal = 0;
 		data->philos[i].meal_count = 0;
 		if (i == 0)
-			data->philos[i].left_fork = data->forks[data->philo_count];
+			data->philos[i].left_fork = data->forks[data->philo_count - 1];
 		else
 			data->philos[i].left_fork = data->forks[i - 1];
 		data->philos[i].right_fork = data->forks[i];
@@ -55,7 +55,7 @@ static void	init_philos(t_data *data)
 static void	init_forks(t_data *data)
 {
 	size_t	i;
-	
+
 	i = 0;
 	printf("---------------\n");
 	while (i < data->philo_count)
