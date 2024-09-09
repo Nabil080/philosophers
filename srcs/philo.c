@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 21:05:52 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:46:53 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	*routine(void *args)
 {
-	printf("This is a thread\n");
 	return (NULL);
 }

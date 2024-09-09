@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 21:07:20 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:48:11 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,28 @@ void	wait_threads(t_data data)
 		pthread_join(data.philos[i].thread, NULL);
 		i++;
 	}
+}
+
+int	mutex_operation(t_mtx *mutex, t_operation operation)
+{
+	if (operation == CREATE)
+		return (pthread_mutex_init(mutex, NULL));
+	if (operation == DESTROY)
+		return (pthread_mutex_destroy(mutex));
+	if (operation == LOCK)
+		return (pthread_mutex_lock(mutex));
+	if (operation == UNLOCK)
+		return (pthread_mutex_unlock(mutex));
+	return (1);
+}
+
+void	show_data(t_data data)
+{
+	printf("---------------\n");
+	printf("Number of philosophers : %d\n", data.philo_count);
+	printf("Time to die : %ld\n", data.time_to_die);
+	printf("Time to eat : %ld\n", data.time_to_eat);
+	printf("Time to sleep : %ld\n", data.time_to_sleep);
+	printf("Number of meals : %d\n", data.meal_count);
+	printf("---------------\n");
 }

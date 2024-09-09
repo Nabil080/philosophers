@@ -6,18 +6,25 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:58:22 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:42:41 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-typedef pthread_mutex_t mtx;
+typedef pthread_mutex_t t_mtx;
+
+typedef enum e_operation {
+	CREATE,
+	DESTROY,
+	LOCK,
+	UNLOCK
+}t_operation;
 
 typedef struct s_fork{
 	int		id;
-	mtx		mutex;
+	t_mtx	mutex;
 }t_fork;
 
 typedef struct s_philo{
@@ -36,6 +43,7 @@ typedef struct s_data{
 	long		time_to_eat;
 	long		time_to_sleep;
 	t_philo		*philos;
+	t_fork		*forks;
 }t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 18:17:32 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:47:55 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,45 @@ void	check_args(int argc, char **argv)
 	}
 }
 
+static void	init_philos(t_data *data)
+{
+	t_philo	philo;
+	size_t	i;
+
+	i = 0;
+	printf("---------------\n");
+	while (i < data->philo_count)
+	{
+		printf("Creating philo : %zu\n", i);
+		data->philos[i].id = i + 1;
+		data->philos[i].alive = true;
+		data->philos[i].eating = false;
+		data->philos[i].last_meal = 0;
+		data->philos[i].meal_count = 0;
+		//todo: link left and right forks
+		pthread_create(&data->philos[i].thread, NULL, routine, NULL);
+		i++;
+	}
+}
+
+static void	init_forks(t_data *data)
+{
+	size_t	i;
+	
+	i = 0;
+	printf("---------------\n");
+	while (i < data->philo_count)
+	{
+		printf("Creating fork : %zu\n", i);
+		if (i + 1 < data->philo_count)
+			data->forks[i].id = i + 1;
+		else
+			data->forks[i].id = 0;
+		mutex_operation(&data->forks[i].mutex, CREATE);
+		i++;
+	}
+}
+
 void	init_data(t_data *data, int argc, char **argv)
 {
 	data->philo_count = ft_atoi(argv[1]);
@@ -36,45 +75,13 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->meal_count = -1;
 	if (argc == 6)
 		data->meal_count = ft_atoi(argv[5]);
+	data->forks = NULL;
 	data->philos = ft_calloc(data->philo_count, sizeof(t_philo) + 1);
 	if (!data->philos)
-		exit_error("Philos allocation failed", NULL);
-}
-
-void	show_data(t_data data)
-{
-	printf("---------------\n");
-	printf("Number of philosophers : %d\n", data.philo_count);
-	printf("Time to die : %ld\n", data.time_to_die);
-	printf("Time to eat : %ld\n", data.time_to_eat);
-	printf("Time to sleep : %ld\n", data.time_to_sleep);
-	printf("Number of meals : %d\n", data.meal_count);
-}
-
-static t_philo	init_philo(size_t index)
-{
-	t_philo	philo;
-
-	philo.id = index + 1;
-	philo.alive = true;
-	philo.eating = false;
-	philo.last_meal = 0;
-	philo.meal_count = 0;
-	//todo: link left and right forks
-	pthread_create(&philo.thread, NULL, routine, NULL);
-	return (philo);
-}
-
-void	init_philos(t_data data)
-{
-	size_t	i;
-
-	i = 0;
-	printf("---------------\n");
-	while (i < data.philo_count)
-	{
-		printf("Creating philo : %zu\n", i);
-		data.philos[i] = init_philo(i);
-		i++;
-	}
+		exit_error("Philos allocation failed", data);
+	data->forks = ft_calloc(data->philo_count, sizeof(t_fork) + 1);
+	if (!data->forks)
+		exit_error("Philos allocation failed", data);
+	init_forks(data);
+	init_philos(data);
 }
