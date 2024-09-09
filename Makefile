@@ -73,7 +73,16 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
-	./${NAME} 5 9999 100 3000
+	./${NAME} 5 500 100 3000
+
+limit : all
+	./${NAME} 5 500 100 3000 5
+
+slow : all
+	./${NAME} 10 400 200 200
+
+hell : all
+	valgrind --tool=helgrind ./${NAME} 5 500 100 3000
 
 leak : all
-	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} 5 9999 100 3000
+	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} 5 500 100 3000
