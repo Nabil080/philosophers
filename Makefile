@@ -34,7 +34,7 @@ OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 ######################## BASIC RULES ########################
 
 all : 
-	@${MAKE} -j ${NAME}
+	${MAKE} -j ${NAME}
 
 re : fclean
 	${MAKE} all
@@ -55,15 +55,15 @@ norm :
 ######################## COMPILATION ########################
 
 ${NAME} : ${OBJS_DIR} ${OBJS}
-	@${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
-	@${CC} ${FLAGS} ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o $@ ${LINKFLAGS}
+	${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
+	${CC} ${FLAGS} ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o $@ ${LINKFLAGS}
 
 debug : ${OBJS_DIR} ${OBJS}
 	${foreach lib, ${LIBS}, ${MAKE} -C ${lib}}
 	${CC} ${FLAGS} -g3 -fsanitize=address ${OBJS} ${foreach lib, ${LIBS},${lib}/${lib}.a} -o ${NAME} ${LINKFLAGS}
 
 ${OBJS_DIR} :
-	@mkdir $@
+	mkdir $@
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
