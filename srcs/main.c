@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:17:19 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:24:12 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	main(int argc, char **argv)
 
 	check_args(argc, argv);
 	init_data(&data, argc, argv);
-	wait_threads(data);
 	show_data(data);
 	show_philos(data);
+	wait_threads(data);
 	free_data(&data);
 	return (0);
 }

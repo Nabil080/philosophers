@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:37:08 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:08:54 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:22:11 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	show_data(t_data data);
 void	show_philos(t_data data);
 void	wait_threads(t_data data);
 int		mutex_operation(t_mtx *mutex, t_operation operation);
-int		thread_operation(pthread_t *thread, t_operation operation);
+int		thread_operation(t_philo *philo, t_operation operation);
 /*philo*/
 void	*routine(void *args);
 

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:17:10 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:22:24 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	wait_threads(t_data data)
 	i = 0;
 	while (i < data.philo_count)
 	{
-		thread_operation(&data.philos[i].thread, WAIT);
+		thread_operation(&data.philos[i], WAIT);
 		i++;
 	}
 }
@@ -37,12 +37,12 @@ int	mutex_operation(t_mtx *mutex, t_operation operation)
 	return (1);
 }
 
-int	thread_operation(pthread_t *thread, t_operation operation)
+int	thread_operation(t_philo *philo, t_operation operation)
 {
 	if (operation == CREATE)
-		return (pthread_create(thread, NULL, routine, NULL));
+		return (pthread_create(&philo->thread, NULL, routine, philo));
 	if (operation == WAIT)
-		return (pthread_join(*thread, NULL));
+		return (pthread_join(philo->thread, NULL));
 	return (1);
 }
 
