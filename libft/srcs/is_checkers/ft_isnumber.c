@@ -6,11 +6,38 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:15:13 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 21:10:41 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:23:21 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+bool	ft_isint(char *str)
+{
+	long	result;
+	int		charge;
+	size_t	i;
+
+	if (!ft_isnumber(str))
+		return (false);
+	//todo check int max;
+	i = 0;
+	if (str[i] == '-')
+		charge = -1;
+	else
+		charge = 1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	result = 0;
+	while (str[i])
+	{
+		result = (result * 10) + (str[i] - '0');
+		if ((result * charge) > INT_MAX || (result * charge) < INT_MIN)
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 bool	ft_isnumber(char *str)
 {
