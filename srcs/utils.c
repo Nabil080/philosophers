@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:03:16 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:17:10 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	wait_threads(t_data data)
 	size_t	i;
 
 	i = 0;
-	sep();
 	while (i < data.philo_count)
 	{
-		printf("Waiting thread : %zu\n", i);
 		thread_operation(&data.philos[i].thread, WAIT);
 		i++;
 	}
@@ -61,6 +59,15 @@ void	show_data(t_data data)
 
 void	show_philos(t_data data)
 {
+	size_t	i;
 	sep();
+	i = 0;
+	while (i < data.philo_count)
+	{
+		printf("Philosopher ID : %d\n", data.philos[i].id);
+		printf("Left fork :\t%p\n", data.philos[i].left_fork);
+		printf("Right fork :\t\t%p\n", data.philos[i].right_fork);
+		i++;
+	}
 	sep();
 }
