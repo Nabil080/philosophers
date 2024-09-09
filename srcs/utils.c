@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:22:24 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:39:39 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,19 @@ int	thread_operation(t_philo *philo, t_operation operation)
 	return (1);
 }
 
-void	show_data(t_data data)
+time_t	get_current_time(void)
 {
-	sep();
-	printf("Number of philosophers : %d\n", data.philo_count);
-	printf("Time to die : %ld\n", data.time_to_die);
-	printf("Time to eat : %ld\n", data.time_to_eat);
-	printf("Time to sleep : %ld\n", data.time_to_sleep);
-	printf("Number of meals : %d\n", data.meal_count);
-	sep();
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	show_philos(t_data data)
+void	ft_usleep(time_t time)
 {
-	size_t	i;
-	sep();
-	i = 0;
-	while (i < data.philo_count)
-	{
-		printf("Philosopher ID : %d\n", data.philos[i].id);
-		printf("Left fork :\t%p\n", data.philos[i].left_fork);
-		printf("Right fork :\t\t%p\n", data.philos[i].right_fork);
-		i++;
-	}
-	sep();
+	time_t	start;
+
+	start = get_current_time();
+	while (time > (get_current_time() - start))
+		usleep(10);
 }

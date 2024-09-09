@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 19:22:38 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:28:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	init_philos(t_data *data)
 			data->philos[i].left_fork = &data->forks[i - 1];
 		data->philos[i].right_fork = &data->forks[i];
 		thread_operation(&data->philos[i], CREATE);
+		data->philos[i].data = data;
 		i++;
 	}
 }
@@ -72,6 +73,8 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atol(argv[2]);
 	data->time_to_eat = ft_atol(argv[3]);
 	data->time_to_sleep = ft_atol(argv[4]);
+	data->start = get_current_time();
+	data->run_simulation = true;
 	data->meal_count = -1;
 	if (argc == 6)
 		data->meal_count = ft_atoi(argv[5]);
@@ -82,6 +85,8 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->forks = ft_calloc(data->philo_count, sizeof(t_fork) + 1);
 	if (!data->forks)
 		exit_error("Philos allocation failed", data);
+	mutex_operation(&data->print_lock, CREATE);
+	pthread_create(&data->supervisor, NULL, supervise, data);
 	init_forks(data);
 	init_philos(data);
 }
