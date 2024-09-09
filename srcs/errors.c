@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:12:45 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/03 20:20:39 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:27:59 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static void	free_data(t_data *data)
 {
-	//todo
+	if (data->philos)
+		free_2d((void *)data->philos, NULL);
+	if (data->forks)
+		free_2d((void *)data->forks, NULL);
 }
 
 void	exit_error(char *str, t_data *data)
