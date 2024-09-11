@@ -21,7 +21,8 @@ SRCS_NAMES =	main.c \
 				init.c \
 				dinner.c \
 				utils.c \
-				errors.c
+				printer.c \
+				getters.c
 
 SRCS_DIR = srcs/
 
@@ -88,4 +89,4 @@ hell : all
 	valgrind --tool=helgrind ./${NAME} 5 500 100 3000
 
 leak : all
-	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} 5 500 100 3000
+	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} 2 99999 200 3000
