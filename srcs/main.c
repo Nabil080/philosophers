@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 20:10:19 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:33:41 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ int	main(int argc, char **argv)
 
 	check_args(argc, argv);
 	init_data(&data, argc, argv);
-	show_data(data);
+	// show_data(data);
 	init_forks(&data);
 	pthread_create(&data.supervisor, NULL, supervise, &data);
 	init_philos(&data);
 	// show_philos(data);
 	while (get_ulong(&data.read_lock, &data.running_threads_count) != data.philo_count)
 		usleep(10);
+	set_ulong(&data.read_lock, &data.start, get_current_time());
 	set_bool(&data.read_lock, &data.synchro, true);
 	wait_threads(data);
 	free_data(&data);

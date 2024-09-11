@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 20:10:20 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:14:02 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	wait_threads(t_data data)
 		pthread_join(data.philos[i].thread, NULL);
 		i++;
 	}
+	set_bool(&data.read_lock, &data.run_simulation, false);
 	pthread_join(data.supervisor, NULL);
 }
 
