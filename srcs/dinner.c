@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 19:57:11 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:00:12 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*routine(void *args)
 	data->running_threads_count++;
 	pthread_mutex_unlock(&data->read_lock);
 	while (get_bool(&data->read_lock, &data->synchro) == false)
-		print_status(*philo, WAIT);
+		usleep(10);
 	//todo: loop until one is dead or everyone is full
 	print_status(*philo, FULL);
 	return (NULL);
