@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 18:21:29 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:09:22 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,30 @@
 bool	is_running(t_data *data)
 {
 	return (get_bool(&data->read_lock, &data->run_simulation));
+}
+
+void	print_debug(t_philo philo, t_status status)
+{
+	if (!is_running(philo.data))
+		return ;
+	pthread_mutex_lock(&philo.data->print_lock);
+	printf("%ld "B_WHITE"%d "RESET, get_current_time() - philo.data->start, philo.id);
+	if (status == WAIT)
+		printf("is waiting\n");
+	else if (status == SLEEP)
+		printf("is "BLUE"sleeping\n");
+	else if (status == THINK)
+		printf("is thinking\n");
+	else if (status == FORK)
+		printf("has taken a "YELLOW"fork\n");
+	else if (status == EAT)
+		printf("is "GREEN"eating\n");
+	else if (status == DEAD)
+		printf(RED"died\n");
+	else if (status == FULL)
+		printf("is full\n");
+	printf(RESET);
+	pthread_mutex_unlock(&philo.data->print_lock);
 }
 
 void	print_status(t_philo philo, t_status status)
@@ -64,10 +88,7 @@ void	*routine(void *args)
 	philo = (t_philo *)args;
 	data = philo->data;
 	while (get_bool(&data->read_lock, &data->synchro) == false)
-	{
 		ft_usleep(100);
-		print_status(*philo, WAIT);
-	}
 	if (philo->id % 2 == 0)
 	{
 		print_status(*philo, THINK);

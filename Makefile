@@ -73,6 +73,9 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
+	./${NAME} 200 410 200 200
+
+ez : all
 	./${NAME} 2 999999 200 200
 
 odd : all

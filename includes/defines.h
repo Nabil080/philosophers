@@ -6,14 +6,24 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 18:16:03 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:04:51 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
+# define GREEN "\033[0;32m"
+# define BLUE "\033[0;34m"
+# define YELLOW "\033[0;33m"
+# define RED "\033[0;31m"
+# define WHITE "\033[0;37m"
+# define B_WHITE "\033[1;37m"
+# define RESET "\033[0m"
+
 typedef pthread_mutex_t	t_mtx;
+
+typedef uint64_t	t_time;
 
 typedef struct s_data	t_data;
 
@@ -30,6 +40,12 @@ typedef enum e_status {
 	WAIT
 }t_status;
 
+typedef enum e_timecode {
+	SECONDS,
+	MILLISECONDS,
+	MICROSECONDS
+}t_timecode;
+
 typedef struct s_fork{
 	int		id;
 	t_mtx	mutex;
@@ -40,7 +56,7 @@ typedef struct s_philo{
 	pthread_t	thread;
 	t_fork		*left_fork;
 	t_fork		*right_fork;
-	time_t		last_meal;
+	t_time		last_meal;
 	size_t		meal_count;
 	bool		eating;
 	bool		alive;
@@ -51,10 +67,10 @@ typedef struct s_philo{
 struct s_data{
 	int			philo_count;
 	int			meal_count;
-	time_t		time_to_die;
-	time_t		time_to_eat;
-	time_t		time_to_sleep;
-	time_t		start;
+	t_time		time_to_die;
+	t_time		time_to_eat;
+	t_time		time_to_sleep;
+	t_time		start;
 	long		running_threads_count;
 	bool		run_simulation;
 	bool		synchro;
