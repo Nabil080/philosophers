@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 18:20:31 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:00:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ time_t	get_current_time(void)
 
 void	ft_usleep(time_t time)
 {
+	time_t	start;
+
+	start = get_current_time();
 	usleep(time);
 }
 

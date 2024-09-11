@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 18:16:21 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:07:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	init_forks(t_data *data)
 
 void	init_data(t_data *data, int argc, char **argv)
 {
+	data->philos = NULL;
+	data->forks = NULL;
 	data->philo_count = ft_atoi(argv[1]);
 	data->time_to_die = ft_atol(argv[2]);
 	data->time_to_eat = ft_atol(argv[3]);
@@ -81,7 +83,8 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->meal_count = -1;
 	if (argc == 6)
 		data->meal_count = ft_atoi(argv[5]);
-	data->forks = NULL;
+	if (data->meal_count == 0)
+		exit_error("The number of meal cannot be null", data);
 	data->philos = ft_calloc(data->philo_count, sizeof(t_philo) + 1);
 	if (!data->philos)
 		exit_error("Philos allocation failed", data);

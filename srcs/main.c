@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/10 19:22:23 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:08:44 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	show_philos(t_data data)
 	while (i < data.philo_count)
 	{
 		printf("Philosopher ID : %d\n", data.philos[i].id);
-		printf("Left fork :\t%p\n", data.philos[i].left_fork);
-		printf("Right fork :\t\t%p\n", data.philos[i].right_fork);
+		printf("Left fork :\t%d\n", data.philos[i].left_fork->id);
+		printf("Right fork :\t\t%d\n", data.philos[i].right_fork->id);
 		i++;
 	}
 	sep();
@@ -50,10 +50,10 @@ int	main(int argc, char **argv)
 
 	check_args(argc, argv);
 	init_data(&data, argc, argv);
-	// show_data(data);
+	show_data(data);
 	init_forks(&data);
 	init_philos(&data);
-	// show_philos(data);
+	show_philos(data);
 	pthread_create(&data.supervisor, NULL, supervise, &data);
 	wait_threads(data);
 	free_data(&data);
