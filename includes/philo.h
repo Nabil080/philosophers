@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:37:08 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 21:39:34 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:19:19 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,21 @@
 /*init*/
 void	check_args(int argc, char **argv);
 void	init_data(t_data *data, int argc, char **argv);
+void	init_philos(t_data *data);
+void	init_forks(t_data *data);
 /*errors*/
 void	free_data(t_data *data);
 void	exit_error(char *str, t_data *data);
 /*utils*/
 time_t	get_current_time(void);
 void	wait_threads(t_data data);
-int		mutex_operation(t_mtx *mutex, t_operation operation);
-int		thread_operation(t_philo *philo, t_operation operation);
 void	ft_usleep(time_t time);
+bool	get_bool(t_mtx *mutex, bool *var);
+void	set_bool(t_mtx *mutex, bool *var, bool res);
+long	get_long(t_mtx *mutex, long *var);
+void	set_long(t_mtx *mutex, long *var, long res);
 /*dinner*/
+bool	is_running(t_data *data);
 void	*routine(void *args);
 void	*supervise(void *args);
 

@@ -73,10 +73,10 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
-	./${NAME} 5 500 100 3000
+	./${NAME} 2 999999 200 200
 
-limit : all
-	./${NAME} 5 500 100 3000 5
+odd : all
+	./${NAME} 5 999999 200 200
 
 slow : all
 	./${NAME} 10 400 200 200
