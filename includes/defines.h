@@ -6,12 +6,14 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 19:04:51 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:51:49 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+# define DEBUG	false
 
 # define GREEN "\033[0;32m"
 # define BLUE "\033[0;34m"
@@ -71,7 +73,7 @@ struct s_data{
 	t_time		time_to_eat;
 	t_time		time_to_sleep;
 	t_time		start;
-	long		running_threads_count;
+	t_time		running_threads_count;
 	bool		run_simulation;
 	bool		synchro;
 	t_philo		*philos;
