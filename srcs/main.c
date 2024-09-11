@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 21:29:51 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:22:23 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	show_data(t_data data)
 {
-	mutex_operation(&data.print_lock, LOCK);
+	pthread_mutex_lock(&data.print_lock);
 	sep();
 	printf("Number of philosophers : %d\n", data.philo_count);
 	printf("Time to die : %ld\n", data.time_to_die);
@@ -23,14 +23,14 @@ static void	show_data(t_data data)
 	printf("Number of meals : %d\n", data.meal_count);
 	printf("Starting time : %ld\n", data.start);
 	sep();
-	mutex_operation(&data.print_lock, UNLOCK);
+	pthread_mutex_unlock(&data.print_lock);
 }
 
 static void	show_philos(t_data data)
 {
 	size_t	i;
 
-	mutex_operation(&data.print_lock, LOCK);
+	pthread_mutex_lock(&data.print_lock);
 	sep();
 	i = 0;
 	while (i < data.philo_count)
@@ -41,7 +41,7 @@ static void	show_philos(t_data data)
 		i++;
 	}
 	sep();
-	mutex_operation(&data.print_lock, LOCK);
+	pthread_mutex_unlock(&data.print_lock);
 }
 
 int	main(int argc, char **argv)
@@ -51,7 +51,10 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	init_data(&data, argc, argv);
 	// show_data(data);
+	init_forks(&data);
+	init_philos(&data);
 	// show_philos(data);
+	pthread_create(&data.supervisor, NULL, supervise, &data);
 	wait_threads(data);
 	free_data(&data);
 	return (0);

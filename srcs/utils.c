@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 21:39:39 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:20:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,9 @@ void	wait_threads(t_data data)
 	i = 0;
 	while (i < data.philo_count)
 	{
-		thread_operation(&data.philos[i], WAIT);
+		pthread_join(data.philos[i].thread, NULL);
 		i++;
 	}
-}
-
-int	mutex_operation(t_mtx *mutex, t_operation operation)
-{
-	if (operation == CREATE)
-		return (pthread_mutex_init(mutex, NULL));
-	if (operation == DESTROY)
-		return (pthread_mutex_destroy(mutex));
-	if (operation == LOCK)
-		return (pthread_mutex_lock(mutex));
-	if (operation == UNLOCK)
-		return (pthread_mutex_unlock(mutex));
-	return (1);
-}
-
-int	thread_operation(t_philo *philo, t_operation operation)
-{
-	if (operation == CREATE)
-		return (pthread_create(&philo->thread, NULL, routine, philo));
-	if (operation == WAIT)
-		return (pthread_join(philo->thread, NULL));
-	return (1);
 }
 
 time_t	get_current_time(void)
@@ -56,9 +34,39 @@ time_t	get_current_time(void)
 
 void	ft_usleep(time_t time)
 {
-	time_t	start;
+	usleep(time);
+}
 
-	start = get_current_time();
-	while (time > (get_current_time() - start))
-		usleep(10);
+bool	get_bool(t_mtx *mutex, bool *var)
+{
+	bool	res;
+
+	pthread_mutex_lock(mutex);
+	res = *var;
+	pthread_mutex_unlock(mutex);
+	return (res);
+}
+
+void	set_bool(t_mtx *mutex, bool *var, bool res)
+{
+	pthread_mutex_lock(mutex);
+	*var = res;
+	pthread_mutex_unlock(mutex);
+}
+
+long	get_long(t_mtx *mutex, long *var)
+{
+	long	res;
+
+	pthread_mutex_lock(mutex);
+	res = *var;
+	pthread_mutex_unlock(mutex);
+	return (res);
+}
+
+void	set_long(t_mtx *mutex, long *var, long res)
+{
+	pthread_mutex_lock(mutex);
+	*var = res;
+	pthread_mutex_unlock(mutex);
 }

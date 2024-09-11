@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 21:26:05 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:16:03 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@ typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_data	t_data;
 
-typedef enum e_operation {
-	CREATE,
-	DESTROY,
-	LOCK,
-	UNLOCK,
+typedef enum e_status {
+	EAT,
+	SLEEP,
+	THINK,
+	DIE,
+	L_FORK,
+	R_FORK,
+	FORK,
+	FULL,
+	DEAD,
 	WAIT
-}t_operation;
+}t_status;
 
 typedef struct s_fork{
 	int		id;
@@ -39,6 +44,7 @@ typedef struct s_philo{
 	size_t		meal_count;
 	bool		eating;
 	bool		alive;
+	t_mtx		mutex;
 	t_data		*data;
 }t_philo;
 
@@ -49,10 +55,13 @@ struct s_data{
 	time_t		time_to_eat;
 	time_t		time_to_sleep;
 	time_t		start;
+	long		running_threads_count;
 	bool		run_simulation;
+	bool		synchro;
 	t_philo		*philos;
 	t_fork		*forks;
 	t_mtx		print_lock;
+	t_mtx		read_lock;
 	pthread_t	supervisor;
 };
 

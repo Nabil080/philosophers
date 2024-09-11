@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/09 21:28:31 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:16:21 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_args(int argc, char **argv)
 	}
 }
 
-static void	init_philos(t_data *data)
+void	init_philos(t_data *data)
 {
 	t_philo	philo;
 	size_t	i;
@@ -45,13 +45,14 @@ static void	init_philos(t_data *data)
 		else
 			data->philos[i].left_fork = &data->forks[i - 1];
 		data->philos[i].right_fork = &data->forks[i];
-		thread_operation(&data->philos[i], CREATE);
+		pthread_mutex_init(&data->philos[i].mutex, NULL);
+		pthread_create(&data->philos[i].thread, NULL, routine, &data->philos[i]);
 		data->philos[i].data = data;
 		i++;
 	}
 }
 
-static void	init_forks(t_data *data)
+void	init_forks(t_data *data)
 {
 	size_t	i;
 
@@ -62,7 +63,7 @@ static void	init_forks(t_data *data)
 			data->forks[i].id = i + 1;
 		else
 			data->forks[i].id = 0;
-		mutex_operation(&data->forks[i].mutex, CREATE);
+		pthread_mutex_init(&data->forks[i].mutex, NULL);
 		i++;
 	}
 }
@@ -75,6 +76,8 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->time_to_sleep = ft_atol(argv[4]);
 	data->start = get_current_time();
 	data->run_simulation = true;
+	data->synchro = false;
+	data->running_threads_count = 0;
 	data->meal_count = -1;
 	if (argc == 6)
 		data->meal_count = ft_atoi(argv[5]);
@@ -85,8 +88,6 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->forks = ft_calloc(data->philo_count, sizeof(t_fork) + 1);
 	if (!data->forks)
 		exit_error("Philos allocation failed", data);
-	mutex_operation(&data->print_lock, CREATE);
-	pthread_create(&data->supervisor, NULL, supervise, data);
-	init_forks(data);
-	init_philos(data);
+	pthread_mutex_init(&data->print_lock, NULL);
+	pthread_mutex_init(&data->read_lock, NULL);
 }
