@@ -74,7 +74,7 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
-	./${NAME} 200 410 200 200
+	./${NAME} 10 410 200 200
 
 ez : all
 	./${NAME} 2 999999 200 200
@@ -82,11 +82,11 @@ ez : all
 odd : all
 	./${NAME} 5 999999 200 200
 
-slow : all
-	./${NAME} 10 400 200 200
+ded : all
+	./${NAME} 10 200 200 200
 
 hell : all
-	valgrind --tool=helgrind ./${NAME} 5 500 100 3000
+	valgrind --tool=helgrind ./${NAME} 2 9999 200 200
 
 leak : all
-	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} 2 99999 200 3000
+	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} 2 99999 200 200

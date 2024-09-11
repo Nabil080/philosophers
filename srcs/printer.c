@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:24:14 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 19:47:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:15:32 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static void	print_status_debug(t_philo philo, t_status status)
 		printf("is thinking\n");
 	else if (status == FORK)
 		printf("has taken a "YELLOW"fork\n");
+	else if (status == L_FORK)
+		printf("has taken the "YELLOW"left fork\n");
+	else if (status == R_FORK)
+		printf("has taken the "YELLOW"right fork\n");
 	else if (status == EAT)
 		printf("is "GREEN"eating\n");
 	else if (status == DEAD)
@@ -36,7 +40,7 @@ static void	print_status_debug(t_philo philo, t_status status)
 
 void	print_status(t_philo philo, t_status status)
 {
-	if (!is_running(philo.data))
+	if (!is_running(philo.data) && status != DEAD)
 		return ;
 	if (DEBUG)
 		return (print_status_debug(philo, status));
@@ -48,7 +52,7 @@ void	print_status(t_philo philo, t_status status)
 		printf("is sleeping\n");
 	else if (status == THINK)
 		printf("is thinking\n");
-	else if (status == FORK)
+	else if (status == FORK || status == L_FORK || status == R_FORK)
 		printf("has taken a fork\n");
 	else if (status == EAT)
 		printf("is eating\n");
