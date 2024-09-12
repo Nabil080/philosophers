@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:24:14 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 21:15:32 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:01:36 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	print_status_debug(t_philo philo, t_status status)
 	else if (status == SLEEP)
 		printf("is "BLUE"sleeping\n");
 	else if (status == THINK)
-		printf("is thinking\n");
+		printf("is "B_WHITE"thinking\n");
 	else if (status == FORK)
 		printf("has taken a "YELLOW"fork\n");
 	else if (status == L_FORK)
-		printf("has taken the "YELLOW"left fork\n");
+		printf("has taken the "YELLOW"left fork [ID: %d]\n", philo.left_fork->id);
 	else if (status == R_FORK)
-		printf("has taken the "YELLOW"right fork\n");
+		printf("has taken the "YELLOW"right fork [ID: %d]\n", philo.right_fork->id);
 	else if (status == EAT)
 		printf("is "GREEN"eating\n");
 	else if (status == DEAD)

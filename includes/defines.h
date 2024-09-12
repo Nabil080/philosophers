@@ -6,14 +6,14 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 17:37:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:41:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define DEBUG	true
+# define DEBUG	false
 
 # define GREEN "\033[0;32m"
 # define BLUE "\033[0;34m"
