@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 19:26:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:51:58 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # define WHITE "\033[0;37m"
 # define B_WHITE "\033[1;37m"
 # define RESET "\033[0m"
+
+# include <limits.h>
+# include <stdint.h>
+# include <stdbool.h>
+# include <sys/time.h>
 
 typedef pthread_mutex_t	t_mtx;
 
