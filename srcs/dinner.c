@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 20:35:04 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:01:04 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 static void	philo_think(t_philo *philo)
 {
-	if (is_running(philo->data))
-		print_status(*philo, THINK);
+	print_status(*philo, THINK);
 }
 
 static void	philo_sleep(t_philo *philo)
 {
 	print_status(*philo, SLEEP);
-	if (is_running(philo->data))
-		ft_usleep(philo->data->time_to_sleep);
+	ft_usleep(philo->data->time_to_sleep);
 }
 
 static void	philo_eat(t_philo *philo)
@@ -60,10 +58,14 @@ void	*routine(void *args)
 		ft_usleep(data->time_to_eat);
 	while (is_running(data) && philo->meal_count != data->meal_count)
 	{
-		philo_eat(philo);
-		philo_sleep(philo);
-		philo_think(philo);
+		if (is_running(data) && philo->meal_count != data->meal_count)
+			philo_eat(philo);
+		if (is_running(data) && philo->meal_count != data->meal_count)
+			philo_sleep(philo);
+		if (is_running(data) && philo->meal_count != data->meal_count)
+			philo_think(philo);
 	}
+	set_bool(&philo->mutex, &philo->eating, true);
 	print_status(*philo, FULL);
 	return (NULL);
 }

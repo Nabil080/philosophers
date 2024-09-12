@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:37:08 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 20:52:55 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:00:08 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*supervise(void *args);
 /*clean exit*/
 void	free_data(t_data *data);
 void	exit_error(char *str, t_data *data);
-void	wait_threads(t_data data);
+void	wait_threads(t_data *data);
 /*utils*/
 time_t	get_current_time(void);
 void	ft_usleep(time_t time);
