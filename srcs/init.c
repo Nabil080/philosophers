@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 20:24:32 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:38:07 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	init_philos(t_data *data)
 	while (i < data->philo_count)
 	{
 		pthread_mutex_init(&data->philos[i].mutex, NULL);
-		pthread_mutex_lock(&data->philos[i].mutex);
 		data->philos[i].id = i + 1;
 		data->philos[i].alive = true;
 		data->philos[i].eating = false;
@@ -51,7 +50,6 @@ void	init_philos(t_data *data)
 		else
 			data->philos[i].right_fork = &data->forks[i + 1];
 		data->philos[i].data = data;
-		pthread_mutex_unlock(&data->philos[i].mutex);
 		pthread_create(&data->philos[i].th, NULL, routine, &data->philos[i]);
 		i++;
 	}

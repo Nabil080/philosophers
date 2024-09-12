@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:37:08 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 19:22:12 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:48:57 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 # define PHILO_H
 
 /*libs*/
-# include "libft.h"
 # include <pthread.h>
 # include <sys/time.h>
+/*usleep/printf*/
+# include <unistd.h>
+/*printf*/
+# include <stdio.h>
+/*
+*	INT_MAX / SIZE_MAX / BOOL
+*/
+# include <limits.h>
+# include <stdint.h>
+# include <stdbool.h>
+/*
+*	malloc / size_t
+*/
+# include <stdlib.h>
 /*structs*/
 # include "defines.h"
 
@@ -30,8 +43,6 @@ void	free_data(t_data *data);
 void	exit_error(char *str, t_data *data);
 /*printer*/
 void	print_status(t_philo philo, t_status status);
-void	show_data(t_data data);
-void	show_philos(t_data data);
 /*utils*/
 time_t	get_current_time(void);
 void	wait_threads(t_data data);
@@ -46,5 +57,11 @@ bool	is_running(t_data *data);
 /*dinner*/
 void	*routine(void *args);
 void	*supervise(void *args);
+/*libft*/
+bool	ft_isint(char *str);
+long	ft_atol(const char *nptr);
+int		ft_atoi(const char *nptr);
+void	*ft_calloc(size_t nmemb, size_t size);
+bool	ft_isnumber(char *str);
 
 #endif

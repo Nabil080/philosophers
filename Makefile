@@ -8,8 +8,6 @@ FLAGS = #-Wall -Wextra -Werror
 
 LINKFLAGS = -lpthread
 
-LIBS = libft \
-
 INCLUDES =	includes \
 			${foreach lib, ${LIBS}, ${lib} ${lib}/includes}
 
@@ -21,7 +19,7 @@ SRCS_NAMES =	main.c \
 				init.c \
 				dinner.c \
 				utils.c \
-				printer.c \
+				libft.c \
 				getters.c
 
 SRCS_DIR = srcs/
