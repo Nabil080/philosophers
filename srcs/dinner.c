@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 21:01:04 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:25:04 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	philo_think(t_philo *philo)
-{
-	print_status(*philo, THINK);
-}
 
 static void	philo_sleep(t_philo *philo)
 {
@@ -25,6 +20,12 @@ static void	philo_sleep(t_philo *philo)
 
 static void	philo_eat(t_philo *philo)
 {
+	if (philo->data->philo_count == 1)
+	{
+		print_status(*philo, L_FORK);
+		ft_usleep(philo->data->time_to_die);
+		return ;
+	}	
 	pthread_mutex_lock(&philo->left_fork->mutex);
 	print_status(*philo, L_FORK);
 	pthread_mutex_lock(&philo->right_fork->mutex);
@@ -53,7 +54,7 @@ void	*routine(void *args)
 	pthread_mutex_unlock(&data->read_lock);
 	while (get_bool(&data->read_lock, &data->synchro) == false)
 		usleep(10);
-	philo_think(philo);
+	print_status(*philo, THINK);
 	if (philo->id % 2 == 0)
 		ft_usleep(data->time_to_eat);
 	while (is_running(data) && philo->meal_count != data->meal_count)
@@ -63,7 +64,7 @@ void	*routine(void *args)
 		if (is_running(data) && philo->meal_count != data->meal_count)
 			philo_sleep(philo);
 		if (is_running(data) && philo->meal_count != data->meal_count)
-			philo_think(philo);
+			print_status(*philo, THINK);
 	}
 	set_bool(&philo->mutex, &philo->eating, true);
 	print_status(*philo, FULL);
@@ -96,5 +97,28 @@ void	*supervise(void *args)
 		}
 		usleep(10);
 	}
+	return (NULL);
+}
+
+void	*one_philo(void *args)
+{
+	t_data	*data;
+	t_philo	*philo;
+
+	data = (t_data *)args;
+	philo = &data->philos[0];
+	philo->id = 1;
+	philo->eating = false;
+	philo->last_meal = get_current_time() - philo->data->start;
+	pthread_mutex_init(&data->philos[0].mutex, NULL);
+	pthread_mutex_lock(&data->read_lock);
+	data->running_threads_count++;
+	pthread_mutex_unlock(&data->read_lock);
+	while (get_bool(&data->read_lock, &data->synchro) == false)
+		usleep(10);
+	print_status(*philo, L_FORK);
+	ft_usleep(data->time_to_die);
+	while (is_running(data))
+		usleep(10);
 	return (NULL);
 }
