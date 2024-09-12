@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 18:40:19 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:24:50 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_philos(t_data *data)
 		data->philos[i].right_fork = &data->forks[i];
 		data->philos[i].data = data;
 		pthread_mutex_unlock(&data->philos[i].mutex);
-		pthread_create(&data->philos[i].thread, NULL, routine, &data->philos[i]);
+		pthread_create(&data->philos[i].th, NULL, routine, &data->philos[i]);
 		i++;
 	}
 }

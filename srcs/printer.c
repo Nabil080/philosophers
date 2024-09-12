@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:24:14 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 19:01:36 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:16:38 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void	print_status_debug(t_philo philo, t_status status)
 {
 	pthread_mutex_lock(&philo.data->print_lock);
-	printf("%ld "B_WHITE"%d "RESET, get_current_time() - philo.data->start, philo.id);
+	printf("%ld "B_WHITE"%d "RESET,
+		get_current_time() - philo.data->start, philo.id);
 	if (status == WAIT)
 		printf("is waiting\n");
 	else if (status == SLEEP)
@@ -25,9 +26,11 @@ static void	print_status_debug(t_philo philo, t_status status)
 	else if (status == FORK)
 		printf("has taken a "YELLOW"fork\n");
 	else if (status == L_FORK)
-		printf("has taken the "YELLOW"left fork [ID: %d]\n", philo.left_fork->id);
+		printf("has taken the "YELLOW"left fork [ID: %d]\n",
+			philo.left_fork->id);
 	else if (status == R_FORK)
-		printf("has taken the "YELLOW"right fork [ID: %d]\n", philo.right_fork->id);
+		printf("has taken the "YELLOW"right fork [ID: %d]\n",
+			philo.right_fork->id);
 	else if (status == EAT)
 		printf("is "GREEN"eating\n");
 	else if (status == DEAD)
@@ -46,9 +49,7 @@ void	print_status(t_philo philo, t_status status)
 		return (print_status_debug(philo, status));
 	pthread_mutex_lock(&philo.data->print_lock);
 	printf("%ld %d ", get_current_time() - philo.data->start, philo.id);
-	if (status == WAIT)
-		printf("is waiting\n");
-	else if (status == SLEEP)
+	if (status == SLEEP)
 		printf("is sleeping\n");
 	else if (status == THINK)
 		printf("is thinking\n");
@@ -58,8 +59,6 @@ void	print_status(t_philo philo, t_status status)
 		printf("is eating\n");
 	else if (status == DEAD)
 		printf("died\n");
-	else if (status == FULL)
-		printf("is full\n");
 	pthread_mutex_unlock(&philo.data->print_lock);
 }
 
