@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:24:14 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 19:16:38 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:20:57 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static void	print_status_debug(t_philo philo, t_status status)
 	else if (status == FORK)
 		printf("has taken a "YELLOW"fork\n");
 	else if (status == L_FORK)
-		printf("has taken the "YELLOW"left fork [ID: %d]\n",
-			philo.left_fork->id);
+		printf("has taken the "YELLOW"left fork [ID: %d][%p]\n",
+			philo.left_fork->id, &philo.left_fork->mutex);
 	else if (status == R_FORK)
-		printf("has taken the "YELLOW"right fork [ID: %d]\n",
-			philo.right_fork->id);
+		printf("has taken the "YELLOW"right fork [ID: %d][%p]\n",
+			philo.right_fork->id, &philo.right_fork->mutex);
 	else if (status == EAT)
 		printf("is "GREEN"eating\n");
 	else if (status == DEAD)
