@@ -32,6 +32,9 @@ OBJS_DIR = objs/
 
 OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 
+HEADERS =	includes/philo.h \
+			includes/defines.h
+
 ######################## BASIC RULES ########################
 
 all : 
@@ -66,7 +69,7 @@ debug : ${OBJS_DIR} ${OBJS}
 ${OBJS_DIR} :
 	mkdir $@
 
-${OBJS_DIR}%.o : ${SRCS_DIR}%.c
+${OBJS_DIR}%.o : ${SRCS_DIR}%.c ${HEADERS}
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
 
 ######################## TEST ########################
