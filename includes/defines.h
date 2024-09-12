@@ -6,14 +6,14 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 18:41:14 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:26:28 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define DEBUG	false
+# define DEBUG	1
 
 # define GREEN "\033[0;32m"
 # define BLUE "\033[0;34m"
@@ -25,7 +25,7 @@
 
 typedef pthread_mutex_t	t_mtx;
 
-typedef uint64_t	t_time;
+typedef uint64_t		t_time;
 
 typedef struct s_data	t_data;
 
@@ -55,7 +55,7 @@ typedef struct s_fork{
 
 typedef struct s_philo{
 	int			id;
-	pthread_t	thread;
+	pthread_t	th;
 	t_fork		*left_fork;
 	t_fork		*right_fork;
 	t_time		last_meal;
