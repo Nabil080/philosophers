@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 20:38:05 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:59:54 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		usleep(10);
 	set_ulong(&data.read_lock, &data.start, get_current_time());
 	set_bool(&data.read_lock, &data.synchro, true);
-	wait_threads(data);
+	wait_threads(&data);
 	free_data(&data);
 	return (0);
 }
@@ -49,16 +49,16 @@ void	exit_error(char *str, t_data *data)
 	exit(EXIT_FAILURE);
 }
 
-void	wait_threads(t_data data)
+void	wait_threads(t_data *data)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < data.philo_count)
+	while (i < data->philo_count)
 	{
-		pthread_join(data.philos[i].th, NULL);
+		pthread_join(data->philos[i].th, NULL);
 		i++;
 	}
-	set_bool(&data.read_lock, &data.run_simulation, false);
-	pthread_join(data.supervisor, NULL);
+	set_bool(&data->read_lock, &data->run_simulation, false);
+	pthread_join(data->supervisor, NULL);
 }

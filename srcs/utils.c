@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 20:52:56 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:00:42 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	print_status_debug(t_philo philo, t_status status)
 	else if (status == DEAD)
 		printf(RED"died\n");
 	else if (status == FULL)
-		printf("is full\n");
+		printf(GREEN"is full !!!! Congrats\n");
 	printf(RESET);
 	pthread_mutex_unlock(&philo.data->print_lock);
 }
