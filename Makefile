@@ -1,6 +1,6 @@
 ######################## SETTINGS ########################
 
-NAME = philos
+NAME = philo
 
 CC = cc
 
