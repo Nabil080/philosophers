@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 19:24:50 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:24:32 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ void	init_philos(t_data *data)
 		data->philos[i].eating = false;
 		data->philos[i].last_meal = 0;
 		data->philos[i].meal_count = 0;
-		if (i == 0)
-			data->philos[i].left_fork = &data->forks[data->philo_count - 1];
+		data->philos[i].left_fork = &data->forks[i];
+		if (i + 1 == data->philo_count)
+		{
+			data->philos[i].right_fork = &data->forks[i];
+			data->philos[i].left_fork = &data->forks[0];
+		}
 		else
-			data->philos[i].left_fork = &data->forks[i - 1];
-		data->philos[i].right_fork = &data->forks[i];
+			data->philos[i].right_fork = &data->forks[i + 1];
 		data->philos[i].data = data;
 		pthread_mutex_unlock(&data->philos[i].mutex);
 		pthread_create(&data->philos[i].th, NULL, routine, &data->philos[i]);
@@ -61,10 +64,7 @@ void	init_forks(t_data *data)
 	i = 0;
 	while (i < data->philo_count)
 	{
-		if (i + 1 < data->philo_count)
-			data->forks[i].id = i + 1;
-		else
-			data->forks[i].id = 0;
+		data->forks[i].id = i + 1;
 		pthread_mutex_init(&data->forks[i].mutex, NULL);
 		i++;
 	}

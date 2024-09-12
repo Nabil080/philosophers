@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 19:26:29 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:13:06 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	*routine(void *args)
 	philo_think(philo);
 	if (philo->id % 2 == 0)
 		ft_usleep(data->time_to_eat);
-	while (is_running(data) || philo->meal_count == data->meal_count)
+	while (is_running(data) && philo->meal_count != data->meal_count)
 	{
 		philo_eat(philo);
 		philo_sleep(philo);
