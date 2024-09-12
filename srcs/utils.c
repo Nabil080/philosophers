@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 21:00:42 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:52:50 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ time_t	get_current_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	ft_usleep(time_t time_in_ms)
+void	ft_usleep(t_data *data, time_t time_in_ms)
 {
 	time_t	start;
 	time_t	remaining;
 
 	start = get_current_time();
 	remaining = time_in_ms;
-	while (remaining > 10)
+	while (is_running(data) && remaining > 10)
 	{
-		usleep(remaining / 2 * 1000);
+		usleep(10 * 1000);
 		remaining = time_in_ms - (get_current_time() - start);
 	}
-	while (remaining > 0)
+	while (is_running(data) && remaining > 0)
 	{
 		usleep(10);
 		remaining = time_in_ms - (get_current_time() - start);

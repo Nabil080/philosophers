@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:37:08 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/12 21:00:08 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:40:30 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exit_error(char *str, t_data *data);
 void	wait_threads(t_data *data);
 /*utils*/
 time_t	get_current_time(void);
-void	ft_usleep(time_t time);
+void	ft_usleep(t_data *data, time_t time);
 time_t	get_philo_relative_lastmeal(t_philo *philo);
 void	print_status(t_philo philo, t_status status);
 /*getters*/
