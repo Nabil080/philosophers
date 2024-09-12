@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/11 21:39:27 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:08:20 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static void	philo_think(t_philo *philo)
 {
-	print_status(*philo, THINK);
+	if (is_running(philo->data))
+		print_status(*philo, THINK);
 }
 
 static void	philo_sleep(t_philo *philo)
 {
 	print_status(*philo, SLEEP);
-	ft_usleep(philo->data->time_to_sleep);
+	if (is_running(philo->data))
+		ft_usleep(philo->data->time_to_sleep);
 }
 
 static void	philo_eat(t_philo *philo)
@@ -31,9 +33,10 @@ static void	philo_eat(t_philo *philo)
 	print_status(*philo, R_FORK);
 	set_bool(&philo->mutex, &philo->eating, true);
 	philo->meal_count++;
-	set_ulong(&philo->mutex, &philo->last_meal, get_current_time() - philo->data->start);
 	print_status(*philo, EAT);
-	ft_usleep(philo->data->time_to_eat);
+	if (is_running(philo->data))
+		ft_usleep(philo->data->time_to_eat);
+	set_ulong(&philo->mutex, &philo->last_meal, get_current_time() - philo->data->start);
 	set_bool(&philo->mutex, &philo->eating, false);
 	pthread_mutex_unlock(&philo->left_fork->mutex);
 	pthread_mutex_unlock(&philo->right_fork->mutex);
@@ -76,7 +79,6 @@ void	*supervise(void *args)
 	data = (t_data *)args;
 	while (get_bool(&data->read_lock, &data->synchro) == false)
 		usleep(10);
-	
 	//todo: loop until the simulation is over, looking for dead philos
 	while (is_running(data))
 	{
@@ -84,7 +86,7 @@ void	*supervise(void *args)
 		while (is_running(data) && i < data->philo_count)
 		{
 			philo = &data->philos[i];
-			if (philo->eating == false && data->time_to_die <=
+			if (get_bool(&philo->mutex, &philo->eating) == false && data->time_to_die <=
 				(get_current_time() - data->start - get_ulong(&philo->mutex, &philo->last_meal)))
 			{
 				set_bool(&philo->mutex, &philo->alive, false);
@@ -92,7 +94,9 @@ void	*supervise(void *args)
 				print_status(*philo, DEAD);
 			}
 			i++;
+			usleep(10);
 		}
+		usleep(10);
 	}
 	return (NULL);
 }
