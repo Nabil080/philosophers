@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:36:12 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/13 01:26:38 by nabil            ###   ########.fr       */
+/*   Updated: 2024/09/14 22:43:41 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 	init_data(&data, argc, argv);
 	init_forks(&data);
 	init_philos(&data);
-	pthread_create(&data.supervisor, NULL, supervise, &data);
 	while (get_ulong(&data.read_lock, &data.running_threads_count)
 		!= data.philo_count)
 		usleep(10);
@@ -60,5 +59,4 @@ void	wait_threads(t_data *data)
 		i++;
 	}
 	set_bool(&data->read_lock, &data->run_simulation, false);
-	pthread_join(data->supervisor, NULL);
 }
