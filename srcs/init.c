@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/13 01:26:26 by nabil            ###   ########.fr       */
+/*   Updated: 2024/09/14 23:00:34 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atol(argv[2]);
 	data->time_to_eat = ft_atol(argv[3]);
 	data->time_to_sleep = ft_atol(argv[4]);
+	if (data->time_to_sleep >= data->time_to_eat)
+		data->time_to_think = 0;
+	else
+		data->time_to_think = data->time_to_eat - data->time_to_sleep;
+	if (data->philo_count % 2)
+		data->time_to_think += data->time_to_eat;
 	data->start = get_current_time();
 	data->run_simulation = true;
 	data->synchro = false;

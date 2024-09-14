@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/13 01:49:39 by nabil            ###   ########.fr       */
+/*   Updated: 2024/09/14 22:47:43 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ struct s_data{
 	t_time		time_to_die;
 	t_time		time_to_eat;
 	t_time		time_to_sleep;
+	t_time		time_to_think;
 	t_time		start;
 	t_time		running_threads_count;
 	bool		run_simulation;
