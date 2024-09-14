@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/14 23:06:47 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/14 23:20:44 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,54 +51,10 @@ time_t	get_philo_relative_lastmeal(t_philo *philo)
 	return (now - start - last_meal);
 }
 
-static void	print_status_debug(t_philo philo, t_status status)
+void	print_status(t_philo philo, char *str)
 {
 	pthread_mutex_lock(&philo.data->print_lock);
 	if (is_running(philo.data))
-		printf("%ld "B_WHITE"%d "RESET,
-			get_current_time() - philo.data->start, philo.id);
-	if (is_running(philo.data) && status == WAIT)
-		printf("is waiting\n");
-	else if (is_running(philo.data)  && status == SLEEP)
-		printf("is "BLUE"sleeping\n");
-	else if (is_running(philo.data)  && status == THINK)
-		printf("is "B_WHITE"thinking\n");
-	else if (is_running(philo.data)  && status == FORK)
-		printf("has taken a "YELLOW"fork\n");
-	else if (is_running(philo.data)  && status == L_FORK)
-		printf("has taken the "YELLOW"left fork [ID: %d][%p]\n",
-			philo.left_fork->id, &philo.left_fork->mutex);
-	else if (is_running(philo.data)  && status == R_FORK)
-		printf("has taken the "YELLOW"right fork [ID: %d][%p]\n",
-			philo.right_fork->id, &philo.right_fork->mutex);
-	else if (is_running(philo.data)  && status == EAT)
-		printf("is "GREEN"eating\n");
-	else if (is_running(philo.data) && status == DEAD)
-		printf(RED"died\n");
-	else if (is_running(philo.data)  && status == FULL)
-		printf(GREEN"is full !!!! Congrats\n");
-	printf(RESET);
-	pthread_mutex_unlock(&philo.data->print_lock);
-}
-
-void	print_status(t_philo philo, t_status status)
-{
-	if (!is_running(philo.data))
-		return ;
-	if (DEBUG)
-		return (print_status_debug(philo, status));
-	pthread_mutex_lock(&philo.data->print_lock);
-	if (is_running(philo.data) && status != WAIT && status != FULL)
-		printf("%ld %d ", get_current_time() - philo.data->start, philo.id);
-	if (is_running(philo.data) && status == SLEEP)
-		printf("is sleeping\n");
-	else if (is_running(philo.data) && status == THINK)
-		printf("is thinking\n");
-	else if (is_running(philo.data) && (status == FORK || status == L_FORK || status == R_FORK))
-		printf("has taken a fork\n");
-	else if (is_running(philo.data) && status == EAT)
-		printf("is eating\n");
-	else if (is_running(philo.data) && status == DEAD)
-		printf("died\n");
+		printf("%ld %d %s\n", get_current_time() - philo.data->start, philo.id, str);
 	pthread_mutex_unlock(&philo.data->print_lock);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:37:08 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/13 01:40:30 by nabil            ###   ########.fr       */
+/*   Updated: 2024/09/14 23:29:39 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_philos(t_data *data);
 void	init_forks(t_data *data);
 /*dinner*/
 void	*routine(void *args);
-void	*supervise(void *args);
 /*clean exit*/
 void	free_data(t_data *data);
 void	exit_error(char *str, t_data *data);
@@ -39,7 +38,7 @@ void	wait_threads(t_data *data);
 time_t	get_current_time(void);
 void	ft_usleep(t_data *data, time_t time);
 time_t	get_philo_relative_lastmeal(t_philo *philo);
-void	print_status(t_philo philo, t_status status);
+void	print_status(t_philo philo, char *str);
 /*getters*/
 bool	get_bool(t_mtx *mutex, bool *var);
 void	set_bool(t_mtx *mutex, bool *var, bool res);

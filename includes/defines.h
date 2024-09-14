@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:04:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/14 22:47:43 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/14 23:24:32 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ struct s_data{
 	t_time		running_threads_count;
 	bool		run_simulation;
 	bool		synchro;
+	long		dead_count;
 	t_philo		*philos;
 	t_fork		*forks;
 	t_mtx		print_lock;
