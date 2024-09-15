@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/14 23:20:44 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/15 23:08:18 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print_status(t_philo philo, char *str)
 {
 	pthread_mutex_lock(&philo.data->print_lock);
 	if (is_running(philo.data))
-		printf("%ld %d %s\n", get_current_time() - philo.data->start, philo.id, str);
+		printf("%ld %d %s\n",
+			get_current_time() - philo.data->start, philo.id, str);
 	pthread_mutex_unlock(&philo.data->print_lock);
 }

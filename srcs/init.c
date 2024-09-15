@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:10:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/14 23:47:29 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/15 23:08:07 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,15 @@ void	init_forks(t_data *data)
 
 void	init_data(t_data *data, int argc, char **argv)
 {
-	data->philos = NULL;
-	data->forks = NULL;
 	data->philo_count = ft_atoi(argv[1]);
 	data->time_to_die = ft_atol(argv[2]);
 	data->time_to_eat = ft_atol(argv[3]);
 	data->time_to_sleep = ft_atol(argv[4]);
-	if (data->time_to_sleep >= data->time_to_eat)
-		data->time_to_think = 0;
-	else
+	data->time_to_think = 0;
+	if (data->philo_count % 2 == 0 && data->time_to_eat >= data->time_to_sleep)
 		data->time_to_think = data->time_to_eat - data->time_to_sleep;
-	if (data->philo_count % 2 && data->time_to_eat * 2 + data->time_to_sleep < data->time_to_die)
-		data->time_to_think += data->time_to_eat;
+	if (data->philo_count % 2 != 0 && data->time_to_eat >= data->time_to_sleep)
+		data->time_to_think = data->time_to_eat * 2 - data->time_to_sleep;
 	data->start = get_current_time();
 	data->run_simulation = true;
 	data->synchro = false;
@@ -89,11 +86,9 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->meal_count = -1;
 	if (argc == 6)
 		data->meal_count = ft_atoi(argv[5]);
-	if (data->meal_count == 0)
-		exit_error("The number of meal cannot be null", data);
 	data->philos = ft_calloc(data->philo_count, sizeof(t_philo) + 1);
 	if (!data->philos)
-		exit_error("Philos allocation failed", data);
+		exit_error("Philos allocation failed", NULL);
 	data->forks = ft_calloc(data->philo_count, sizeof(t_fork) + 1);
 	if (!data->forks)
 		exit_error("Philos allocation failed", data);
