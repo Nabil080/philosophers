@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:50:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/09/14 23:44:58 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/09/15 23:11:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 static void	sleep_and_die(t_philo *philo)
 {
-	ft_usleep(philo->data, philo->data->time_to_die - ((get_current_time() - philo->data->start) - philo->last_meal));
+	ft_usleep(philo->data, philo->data->time_to_die
+		- ((get_current_time() - philo->data->start) - philo->last_meal));
 	pthread_mutex_lock(&philo->data->print_lock);
 	if (is_running(philo->data))
-		printf("%ld %d died\n", get_current_time() - philo->data->start, philo->id);
+		printf("%ld %d died\n",
+			get_current_time() - philo->data->start, philo->id);
 	set_bool(&philo->data->read_lock, &philo->data->run_simulation, false);
 	pthread_mutex_unlock(&philo->data->print_lock);
 }
@@ -25,15 +27,18 @@ static void	sleep_and_die(t_philo *philo)
 static void	philo_think(t_philo *philo)
 {
 	print_status(*philo, "is thinking");
-	if (get_philo_relative_lastmeal(philo) + philo->data->time_to_think >= philo->data->time_to_die)
+	if (get_philo_relative_lastmeal(philo) + philo->data->time_to_think
+		>= philo->data->time_to_die)
 		sleep_and_die(philo);
 	else
 		ft_usleep(philo->data, philo->data->time_to_think);
 }
+
 static void	philo_sleep(t_philo *philo)
 {
 	print_status(*philo, "is sleeping");
-	if (get_philo_relative_lastmeal(philo) + philo->data->time_to_sleep >= philo->data->time_to_die)
+	if (get_philo_relative_lastmeal(philo) + philo->data->time_to_sleep
+		>= philo->data->time_to_die)
 		sleep_and_die(philo);
 	else
 		ft_usleep(philo->data, philo->data->time_to_sleep);
@@ -56,7 +61,8 @@ static void	philo_eat(t_philo *philo)
 	print_status(*philo, "is eating");
 	set_ulong(&philo->mutex, &philo->last_meal,
 		get_current_time() - philo->data->start);
-	if (get_philo_relative_lastmeal(philo) + philo->data->time_to_eat >= philo->data->time_to_die)
+	if (get_philo_relative_lastmeal(philo) + philo->data->time_to_eat
+		>= philo->data->time_to_die)
 		sleep_and_die(philo);
 	else
 		ft_usleep(philo->data, philo->data->time_to_eat);
