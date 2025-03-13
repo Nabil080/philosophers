@@ -20,7 +20,7 @@
 Clone the repository and build the project:
 
 ```sh
-git clone https://github.com/Nabil080/philo
+git clone https://github.com/Nabil080/philosophers
 cd philo
 make
 ```
