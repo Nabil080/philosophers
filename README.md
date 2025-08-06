@@ -4,6 +4,11 @@
 
 **Philosophers** is a multithreading simulation of the **Dining Philosophers Problem**, a classic concurrency problem. The goal is to manage multiple philosophers who must alternately **think, eat, and sleep** while sharing a limited number of forks. The program ensures that no philosopher **starves** while preventing **race conditions** and **deadlocks** using mutexes.
 
+![ScreencastFrom2025-08-0616-54-41-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/bcab2d56-84b3-4fa4-adc2-a76827026609)
+
+<img width="629" height="437" alt="image" src="https://github.com/user-attachments/assets/111259f8-f7cb-4fcc-81b7-170efdbcf089" />
+
+
 ## Features
 
 - **Thread-based simulation**: Each philosopher runs as an independent thread.
