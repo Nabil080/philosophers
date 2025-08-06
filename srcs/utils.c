@@ -12,18 +12,18 @@
 
 #include "philo.h"
 
-time_t	get_current_time(void)
+time_t get_current_time(void)
 {
-	struct timeval	tv;
+	struct timeval tv;
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	ft_usleep(t_data *data, time_t time_in_ms)
+void ft_usleep(t_data *data, time_t time_in_ms)
 {
-	time_t	start;
-	time_t	remaining;
+	time_t start;
+	time_t remaining;
 
 	start = get_current_time();
 	remaining = time_in_ms;
@@ -39,11 +39,11 @@ void	ft_usleep(t_data *data, time_t time_in_ms)
 	}
 }
 
-time_t	get_philo_relative_lastmeal(t_philo *philo)
+time_t get_philo_relative_lastmeal(t_philo *philo)
 {
-	time_t	last_meal;
-	time_t	now;
-	time_t	start;
+	time_t last_meal;
+	time_t now;
+	time_t start;
 
 	last_meal = get_ulong(&philo->mutex, &philo->last_meal);
 	now = get_current_time();
@@ -51,11 +51,10 @@ time_t	get_philo_relative_lastmeal(t_philo *philo)
 	return (now - start - last_meal);
 }
 
-void	print_status(t_philo philo, char *str)
+void print_status(t_philo philo, char *str)
 {
 	pthread_mutex_lock(&philo.data->print_lock);
 	if (is_running(philo.data))
-		printf("%ld %d %s\n",
-			get_current_time() - philo.data->start, philo.id, str);
+		printf("\033[90m%ld\033[0m %d %s\n", get_current_time() - philo.data->start, philo.id, str);
 	pthread_mutex_unlock(&philo.data->print_lock);
 }
